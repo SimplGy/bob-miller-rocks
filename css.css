@@ -3,6 +3,10 @@ body, html, p, ul, h1, h2, h3 {
     padding: 0;
 }
 
+html {
+    border-top: 8px solid #898ffc;
+}
+
 body {
     margin: 20px;
     margin-bottom: 50px;
