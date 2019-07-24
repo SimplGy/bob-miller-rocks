@@ -4,12 +4,16 @@ body, html, p, ul, h1, h2, h3 {
 }
 
 body {
-    margin: 20px 10px;
+    margin: 20px;
     margin-bottom: 50px;
     text-align: center;
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
     line-height: 1.4;
+}
+
+h1, h2, h3 {
+    line-height: 1.1;
 }
 
 .mainImg {
