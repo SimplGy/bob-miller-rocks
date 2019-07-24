@@ -1,0 +1,62 @@
+body, html, p, ul, h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 20px 10px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+
+.mainImg {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.items ul {
+    list-style: none;
+}
+
+.items li {
+    max-width: 30em;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.items .text {
+    text-align: left;
+}
+
+.items .name {
+    border-top: 1px solid #ddd;
+    padding-top: 5px;
+}
+
+.muted {
+    color: #999;
+}
+
+.button {
+    display: inline-block;
+    background-color: #3f51b5;
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+.button:active, .button:hover {
+    background-color: #2f3c88;
+}
+.button.big {
+    padding: 20px 50px;
+    border-radius: 5px;
+}
