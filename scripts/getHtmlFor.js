@@ -4,6 +4,7 @@
  */
 
 const puppeteer = require('puppeteer');
+const {addFileToGit} = require('./addFileToGit');
 
 let page;
 const fileToGenerate = 'index.html';

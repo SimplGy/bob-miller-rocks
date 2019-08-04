@@ -1,3 +1,5 @@
+// TODO: put this in an npm repo so I can depend on it cleanly in cloud functions
+
 const Octokit = require('@octokit/rest'); // https://octokit.github.io/rest.js/
 
 // Auth
