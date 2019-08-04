@@ -74,5 +74,4 @@ Test pulling html from a site:
 
 - [x] mobile reading
 - [x] favicon
-- [ ] static rendering
-
+- [x] static rendering
