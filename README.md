@@ -35,6 +35,17 @@ The site's static assets are deployed by github pages on any git push.
 * [Google Form](https://docs.google.com/forms/d/1qA4iDTeJvQGKEHO4VAjOzD4Q-1f_VQ1wmWIKnX_RTL4/edit) (careful about changing the question titles, that impacts the column names in the output data)
 * [Google Sheet](https://docs.google.com/spreadsheets/d/1VJ6Hw5bMgW3KzT9veA2EjQ_JIlcXsS2UYC2V8x4Gs2Y)
 
+## Scripts
+
+To test adding a file to Git:
+
+    node -e 'require("./scripts/addFileToGit").main("foo.txt", "bar")'
+    
+Test pulling html from a site:
+
+    node -e 'require("./scripts/getHtmlFor").debug("https://bob.miller.rocks")'
+
+
 ## TODO
 
 - [x] mobile reading
