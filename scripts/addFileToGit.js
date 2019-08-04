@@ -1,5 +1,12 @@
 const Octokit = require('@octokit/rest'); // https://octokit.github.io/rest.js/
-const {auth, owner, repo, ref} = require('./_config');
+
+// Auth
+const { auth } = require('./_secrets');
+
+// User-specific config
+const owner = 'simplgy';
+const repo = 'bob-miller-rocks';
+const ref = 'heads/master';
 
 // github config
 const userAgent = 'addFileToGit.js v0.1'; // ?
@@ -8,19 +15,13 @@ const octokit = new Octokit({ auth, userAgent });
 const message = 'simplgy/addFileToGit.js scripted commit';
 const encoding = 'utf-8';
 
-// Error states
-if (auth == null) return console.error('need auth') && process.exit(82);
-if (repo == null) return console.error('need repo') && process.exit(83);
-if (owner == null) return console.error('need owner') && process.exit(84);
-if (ref == null) return console.error('need ref') && process.exit(85);
-
 
 
 /**
  * Create a single-file commit on top of head.
  * Send it a file path like "foo.txt" and a string of file contents.
  */
-exports.main = async function addFileToGit(path, content) {
+async function addFileToGit(path, content) {
 
   // 1. Get the sha of the last commit
   const { data: { object } } = await octokit.git.getRef({repo, owner, ref}); //github.ref(repo, ref).object.sha
@@ -68,3 +69,5 @@ exports.main = async function addFileToGit(path, content) {
 
   console.log({sha_latest_commit, updated_ref: updated_ref.sha});
 }
+
+exports.addFileToGit = addFileToGit;

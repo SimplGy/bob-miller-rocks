@@ -2,9 +2,7 @@
   "name": "getStaticHtmlFor",
   "version": "0.0.1",
   "dependencies": {
-    "@google-cloud/storage": "^3.0.4",
     "@octokit/rest": "^16.28.7",
-    "github": "^14.0.0",
     "puppeteer": "^1.6.2"
   }
 }

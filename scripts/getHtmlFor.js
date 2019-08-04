@@ -1,15 +1,28 @@
+/**
+ * This file is intended for deployment as a google cloud function.
+ * It uses puppetteer to pull the rendered html from a website.
+ */
+
 const puppeteer = require('puppeteer');
-const {rmScriptTags} = require('./utils');
-const {fileToGenerate} = require('./_config');
 
-if (fileToGenerate == null) return console.error('need fileToGenerate') && process.exit(91);
-
+let page;
+const fileToGenerate = 'index.html';
 const waitUntil = 'networkidle0'
   // consider navigation to be finished when there are no more than 0 network connections for at least 500 ms.
   // https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md
   // often used: 'networkidle2'
 
-let page;
+/**
+ * Remove all script tags. We're letting the page evaluate scripts with networkidle0,
+ * so we want to remove them after.
+ * leave <head> scripts (eg: analytics)
+ */
+function rmScriptTags() {
+  const els = [...document.querySelectorAll('body script')];
+    els.forEach(tag =>
+      tag.parentNode.removeChild(tag)
+    );
+}
 
 async function getBrowserPage() {
   // Launch headless Chrome. Turn off sandbox so Chrome can run under root.
@@ -17,6 +30,11 @@ async function getBrowserPage() {
   return browser.newPage();
 }
 
+
+
+/**
+ * Load a page, wait, then pull the html from it as a string.
+ */
 exports.main = async (req, res) => {
   const url = req.query.url;
   if (!url) return res.send('Please provide URL as GET parameter, for example: <code>?url=https://example.com</code>');
@@ -25,19 +43,15 @@ exports.main = async (req, res) => {
   await page.goto(url, {waitUntil});
   await page.evaluate(rmScriptTags);
   const html = await page.content(); // get computed page html
-
-  // Save the html to our google storage bucket
-  // await file.save(html, {metadata: { contentType: 'text/html'}});
-  
-  // await addFileToGit(fileToGenerate, html);
+  await addFileToGit(fileToGenerate, html);
   
   // Send the response
   res.set('Content-Type', 'text/html');
   res.status(200);
   res.send(`Successfully processed ${html.length} chars of html`);
   
-  console.log(html);
-  process.exit(0);
+  //console.log(html);
+  //process.exit(0);
 };
 
 
