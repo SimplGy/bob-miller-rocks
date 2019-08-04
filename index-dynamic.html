@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Robert Miller - Memories from Family and Friends</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <link rel="stylesheet" href="css.css">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145116024-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-145116024-1');
+    </script>
+  </head>
+  <body>
+    <h1>Robert Miller</h1>
+    <h2>Favorite Memories from Family and Friends</h2>
+    <img class="mainImg" src="./robert-miller.jpg" alt="Robert Miller with Love">
+
+    <section id="Memories" class="items">
+      <p class="muted">loading...</p>
+    </section>
+
+    <a class="button big" target="_blank" href="https://docs.google.com/forms/d/e/1FAIpQLScg0g5JQh9oAfX83Ybq0Fpsq6LCczHkyxPTYEQ0cdJ8m0U7OQ/viewform">
+      Add a Memory
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/tabletop@1.5.2/src/tabletop.min.js"></script>
+
+<script>
+
+// Used to index into the spreadsheet's row data
+// These key values are odd, but match the google forms -> spreadsheet keys we get from Tabletop
+const cols = {
+  text: 'pleaseshareamemoryorstoryaboutrobertmiller',
+  name: 'yourname',
+  date: 'timestamp',
+};
+
+// generate an html element
+const elWithText = (tag, text, className, title) => {
+  const el = document.createElement(tag);
+  if (className) {
+    el.className = className;
+  }
+  if (title) {
+    el.title = title;
+  }
+  el.innerText = text;
+  return el;
+}
+
+/** Shuffles array in place */
+ function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+const gotRows = (rows) => {
+  shuffle(rows);
+  console.log(rows);
+  const ul = document.createElement('ul');
+  rows.forEach(row => {
+    const date = new Date(row[cols.date]);
+    const dateSentence = `Shared on ${date.toLocaleDateString()} at ${date.toLocaleTimeString()}`;
+    const ms = Number(date);
+    const name = row[cols.name];
+    const text = row[cols.text];
+    if (text == null || text.trim() === '') {
+      console.info('No text for this row: ', row); // shouldn't happen, but if so let's fail and continue
+      return;
+    }
+
+    const li = document.createElement('li');
+    li.id = `m-${ms}`; // for permalink
+    li.appendChild(elWithText('p', text, 'text'));
+    if (name) {
+      li.appendChild(elWithText('p', `from ${name}`, 'name muted', dateSentence));
+    }
+    ul.appendChild(li);
+  });
+
+  const memories = document.querySelector('#Memories');
+  memories.innerHTML = ''; // Empty
+  memories.appendChild(ul);
+
+  // done: randomize order
+  // TODO: linkable ids per memory?
+  // TODO: favicon?
+};
+
+function init() {
+  // const demoUrl = 'https://docs.google.com/spreadsheets/d/0AmYzu_s7QHsmdDNZUzRlYldnWTZCLXdrMXlYQzVxSFE/pubhtml';
+  // const key = 'https://docs.google.com/spreadsheets/d/1VJ6Hw5bMgW3KzT9veA2EjQ_JIlcXsS2UYC2V8x4Gs2Y/edit?usp=sharing';
+  const key = '1VJ6Hw5bMgW3KzT9veA2EjQ_JIlcXsS2UYC2V8x4Gs2Y';
+  const callback = (rows, tabletop) => gotRows(rows);
+  Tabletop.init({ key, callback, simpleSheet: true, prettyColumnNames: false });
+}
+window.addEventListener('DOMContentLoaded', init)
+</script>
+
+
+
+  </body>
+</html>
