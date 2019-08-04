@@ -31,7 +31,7 @@ function shuffle(a) {
 }
 
 const gotRows = (rows) => {
-  shuffle(rows);
+  // shuffle(rows);
   console.log(rows);
   const ul = document.createElement('ul');
   rows.forEach(row => {
