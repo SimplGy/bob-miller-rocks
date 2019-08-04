@@ -51,7 +51,7 @@ The script:
 
 Then you should be able to run the function at:
 
-    https://us-central1-side-projects-248720.cloudfunctions.net/updateStaticHtml?url=https://bob.miller.rocks/index-dynamic.html
+> [https://us-central1-side-projects-248720.cloudfunctions.net/updateStaticHtml?url=https://bob.miller.rocks/index-dynamic.html](https://us-central1-side-projects-248720.cloudfunctions.net/updateStaticHtml?url=https://bob.miller.rocks/index-dynamic.html)
 
 When it succeeds it says "successfully processed n chars of html" and you'll see a new git commit in this repo.
 
