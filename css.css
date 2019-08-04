@@ -60,6 +60,7 @@ p {
     text-decoration: none;
     padding: 5px 10px;
     border-radius: 3px;
+    font-weight: bold;
 }
 .button:active, .button:hover {
     background-color: #2f3c88;
