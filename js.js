@@ -32,6 +32,7 @@ function shuffle(a) {
 
 const gotRows = (rows) => {
   // shuffle(rows);
+  rows.reverse();
   console.log(rows);
   const ul = document.createElement('ul');
   rows.forEach(row => {
