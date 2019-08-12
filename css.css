@@ -20,11 +20,20 @@ h1, h2, h3 {
     line-height: 1.1;
 }
 
-.mainImg {
-    margin-top: 20px;
+
+/* --------------------- Images */
+.imageRow {
+    margin: 0 -20px; /* reverse out body padding */
     margin-bottom: 50px;
 }
+.imageRow > * {
+    margin-top: 20px;
+    vertical-align: middle;
+    max-width: 100%;
+}
 
+
+/* --------------------- Text */
 p {
     margin-bottom: 10px;
 }
