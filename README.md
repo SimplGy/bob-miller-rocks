@@ -32,6 +32,18 @@ What we end up with is:
 * https://bob.miller.rocks/index-dynamic.html -- the "live", async fetching dynamic website
 * https://bob.miller.rocks/index.html -- the statically generated site
 
+## Developing
+
+To deploy the code:
+
+1. edit `index-dynamic.html`
+2. push to github, verify it has deployed to http://bob.miller.rocks/index-dynamic.html
+
+To regenerate the static version of `index.html`:
+
+1. Visit [https://us-central1-side-projects-248720.cloudfunctions.net/updateStaticHtml?url=https://bob.miller.rocks/index-dynamic.html](https://us-central1-side-projects-248720.cloudfunctions.net/updateStaticHtml?url=https://bob.miller.rocks/index-dynamic.html)
+2. Test that it appears updated at http://bob.miller.rocks
+
 ## Deploying
 
 The site:
